@@ -1,0 +1,21 @@
+name: lucca_automacao
+run-name: ${{ github.actor }} Pipeline Deploy
+on:
+  push:
+    branches:
+      - "main"
+    paths-ignore:
+      - "docs/**"
+jobs:
+  githubacions-lucca:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: INSTALL PACKAGES
+        run: |
+          sudo apt update -y
+          sudo apt-get install figlet -y
+          curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
+          chmod +x ./snyk
+          mv ./snyk /usr/local/bin/
